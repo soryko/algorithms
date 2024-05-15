@@ -1,9 +1,4 @@
-'''
-Node class
-parameters :self, :value
-attributes :next
-    creates new Node
-'''
+
 class Node():
     def __init__(self, value):
         self.value = value
@@ -11,14 +6,6 @@ class Node():
         self.next = None
 
 
-'''
-LinkedList class
-parameters :self, :value
-    creates new Node
-    points head and tail to new node
-    length of 1
-
-'''
 class LinkedList():
     def __init__(self, value):
         self.value = value
@@ -30,16 +17,16 @@ class LinkedList():
         self.length = 1
 
 
-'''
-append function
-parameters :self, :value
-    creates new Node
-    adds Node to tail
-'''
     def append(self,value):
-        new_node = Node(value)
-        self.tail = new_node
-        self.head.next = new_node
+        if self.head is None:
+            new_node = Node(value)
+            #pointers
+            self.head = new_node
+            self.tail = new_node
+        else:
+            #attribute
+            self.tail.next = new_node
+            self.tail = new_node
         self.length += 1
 
 '''
