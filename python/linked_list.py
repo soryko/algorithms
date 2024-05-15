@@ -2,15 +2,19 @@
 LinkedList class
 parameters :self, :value
     creates new Node
+    points head and tail to new node
+    length of 1
+
 '''
 class LinkedLists():
     def __init__(self, value):
         self.value = value
+        new_node = Node()
         #pointers
-        self.head =
-        self.tail =
+        self.head = new_node
+        self.tail = new_node
         #list attributes
-        self.next = None
+        self.length = 1
 
 '''
 Node class
