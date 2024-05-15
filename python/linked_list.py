@@ -1,4 +1,17 @@
 '''
+Node class
+parameters :self, :value
+attributes :next
+    creates new Node
+'''
+class Node():
+    def __init__(self, value):
+        self.value = value
+        #Node attribute
+        self.next = None
+
+
+'''
 LinkedList class
 parameters :self, :value
     creates new Node
@@ -16,24 +29,20 @@ class LinkedList():
         #list attributes
         self.length = 1
 
-'''
-Node class
-parameters :self, :value
-attributes :next
-    creates new Node
-'''
-class Node():
-    def __init__(self, value):
-        self.value = value
-        #Node attribute
-        self.next = None
 
 '''
 append function
 parameters :self, :value
     creates new Node
     adds Node to tail
+'''
+    def append(self,value):
+        new_node = Node(value)
+        self.tail = new_node
+        self.head.next = new_node
+        self.length += 1
 
+'''
 prepend function
 parameters :self, :value
     creates new Node
