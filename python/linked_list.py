@@ -29,6 +29,20 @@ class LinkedList():
             self.tail = new_node
         self.length += 1
 
+    def pop(self,value):
+        if self.head is None:
+            return
+        elif self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            tracker = self.head
+            while tracker != self.tail:
+                tracker = tracker.next
+                new_tail = tracker
+            self.tail = None
+            self.tail = new_tail
+            self.length -= 1
 '''
 prepend function
 parameters :self, :value
@@ -49,9 +63,9 @@ parameters :self, :value
 linked_list = LinkedList(25)
 print("Head:", linked_list.head.value, "Memory:", linked_list.head)
 print("Tail:", linked_list.tail.value, "Memory:", linked_list.tail)
-print("Length:", linked_list.length)
+print("Length:", linked_list.length, "Object:", vars(linked_list))
 
 linked_list.append(98)
 print("Head:", linked_list.head.value, "Memory:", linked_list.head)
 print("Tail:", linked_list.tail.value, "Memory:", linked_list.tail)
-print("Length:", linked_list.length)
+print("Length:", linked_list.length, "Object:", vars(linked_list))
