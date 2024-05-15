@@ -37,9 +37,10 @@ class LinkedList():
             self.tail = None
         else:
             tracker = self.head
-            while tracker != self.tail:
+            while tracker.next.value != value:
                 tracker = tracker.next
-                new_tail = tracker
+                incision_1 = tracker
+                incision_2 = incision_1.next 
             self.tail = None
             self.tail = new_tail
             self.length -= 1
@@ -69,3 +70,5 @@ linked_list.append(98)
 print("Head:", linked_list.head.value, "Memory:", linked_list.head)
 print("Tail:", linked_list.tail.value, "Memory:", linked_list.tail)
 print("Length:", linked_list.length, "Object:", vars(linked_list))
+
+linked_list.pop()
