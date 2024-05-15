@@ -6,10 +6,10 @@ parameters :self, :value
     length of 1
 
 '''
-class LinkedLists():
+class LinkedList():
     def __init__(self, value):
         self.value = value
-        new_node = Node()
+        new_node = Node(value)
         #pointers
         self.head = new_node
         self.tail = new_node
@@ -48,3 +48,9 @@ parameters :self, :value
     new Node points to following Node
 
 '''
+
+#tests
+linked_list = LinkedList(25)
+print("Head:", linked_list.head.value, "Memory:", linked_list.head)
+print("Tail:", linked_list.tail.value, "Memory:", linked_list.tail)
+print("Length:", linked_list.length)
