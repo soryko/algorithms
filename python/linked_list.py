@@ -15,13 +15,10 @@ class LinkedList():
         self.length = 1
 
     def print_list(self):
-        formatted_list = []
         tracker = self.head
         while tracker.next != None:
-            formatted_list.append(tracker.value)
+            print(tracker.value)
             tracker = tracker.next
-        for i in formatted_list:
-            print(i)
         return
 
     def append(self,value):
