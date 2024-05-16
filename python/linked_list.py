@@ -2,7 +2,6 @@
 class Node():
     def __init__(self, value):
         self.value = value
-        #Node attribute
         self.next = None
 
 
@@ -58,12 +57,19 @@ class LinkedList():
             new_node.next = self.head
             self.head = new_node
         self.length += 1
-'''
-prepend function
-parameters :self, :value
-    creates new Node
-    adds Node to head
 
+    def pop_first(self):
+        if self.head is None:
+            return
+        elif self.length <= 1:
+            self.head = None
+            self.tail = None
+        else:
+            tracker = self.head
+            tracker = tracker.next
+            self.head = tracker
+            self.length -= 1
+'''
 
 insert function
 parameters :self, :value
