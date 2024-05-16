@@ -29,22 +29,24 @@ class LinkedList():
             self.tail = new_node
         self.length += 1
 
-    def pop(self,value):
+    def pop(self):
         if self.head is None:
             return
-        elif self.length == 1:
+        elif self.length <= 1:
             self.head = None
             self.tail = None
         else:
             tracker = self.head
-            while tracker.next.value != value:
-                tracker = tracker.next
             incision_1 = tracker
+            while tracker.next != None:
+                incision_1 = tracker
+                tracker = tracker.next    
             incision_2 = tracker.next
-            self.tail = None
-            self.tail = incision_2
+            self.tail = incision_1
+            self.tail.next = None
             incision_1.next = incision_2
             self.length -= 1
+        return incision_2
 '''
 prepend function
 parameters :self, :value
@@ -72,7 +74,17 @@ print("Head:", linked_list.head.value, "Memory:", linked_list.head)
 print("Tail:", linked_list.tail.value, "Memory:", linked_list.tail)
 print("Length:", linked_list.length, "Object:", vars(linked_list))
 
-linked_list.pop(98)
+linked_list.append(43)
+print("Head:", linked_list.head.value, "Memory:", linked_list.head)
+print("Tail:", linked_list.tail.value, "Memory:", linked_list.tail)
+print("Length:", linked_list.length, "Object:", vars(linked_list))
+
+linked_list.append(2)
+print("Head:", linked_list.head.value, "Memory:", linked_list.head)
+print("Tail:", linked_list.tail.value, "Memory:", linked_list.tail)
+print("Length:", linked_list.length, "Object:", vars(linked_list))
+
+linked_list.pop()
 print("Head:", linked_list.head.value, "Memory:", linked_list.head)
 print("Tail:", linked_list.tail.value, "Memory:", linked_list.tail)
 print("Length:", linked_list.length, "Object:", vars(linked_list))
