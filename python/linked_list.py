@@ -39,10 +39,11 @@ class LinkedList():
             tracker = self.head
             while tracker.next.value != value:
                 tracker = tracker.next
-                incision_1 = tracker
-                incision_2 = incision_1.next 
+            incision_1 = tracker
+            incision_2 = tracker.next
             self.tail = None
-            self.tail = new_tail
+            self.tail = incision_2
+            incision_1.next = incision_2
             self.length -= 1
 '''
 prepend function
@@ -71,4 +72,7 @@ print("Head:", linked_list.head.value, "Memory:", linked_list.head)
 print("Tail:", linked_list.tail.value, "Memory:", linked_list.tail)
 print("Length:", linked_list.length, "Object:", vars(linked_list))
 
-linked_list.pop()
+linked_list.pop(98)
+print("Head:", linked_list.head.value, "Memory:", linked_list.head)
+print("Tail:", linked_list.tail.value, "Memory:", linked_list.tail)
+print("Length:", linked_list.length, "Object:", vars(linked_list))
