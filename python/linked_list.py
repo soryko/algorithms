@@ -19,6 +19,7 @@ class LinkedList():
         while tracker.next != None:
             print(tracker.value)
             tracker = tracker.next
+        print(tracker.value)
         return
 
     def append(self,value):
