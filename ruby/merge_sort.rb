@@ -1,28 +1,19 @@
 def merge_sort(arr)
-  if arr.length == 1
-    return arr  
+  return arr if arr.length <= 1
+
+  mid = (arr.length / 2).floor
+  left_side = arr[0...mid]
+  right_side = arr[mid...]
+  left_side = merge_sort(left_side)
+  right_side = merge_sort(right_side)
+
+  temporary_array = []
+
+  if left_side.first  <= right_side.first
+    temporary_array << left_side.shift
   else
-    r = (arr.length) / 2
-    left_side = arr[0..r]
-    right_side = arr[r..]
-    merge_sort(left_side)
-    merge_sort(right_side)
+    temporary_array << right_side.shift
   end
-
-  x = y = z = 0
-
-  temporary_array = arr.duplicate
-
-  while x < left_side.length && y < right_side.length
-    if left_side[x] < right_side[y]
-      temporary_array[z] = left_side[x]
-      x += 1
-    else
-      temporary_array[z] = right_side[y]
-      y += 1
-    end
-    z += 1
-  end
-  temporary_array
+  temporary_array + left_side + right_side
 end
-puts merge_sort([6, 5, 12, 10, 9, 1])
+puts merge_sort([6, 5, 12, 10, 9, 1, 28, 3])
