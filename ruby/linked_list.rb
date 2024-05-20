@@ -122,6 +122,23 @@ class LinkedList
         @tail = new_node if new_node.next.nil?
     end
 
+    def remove_at(index)
+
+        current_node = @head
+        current_index = 0
+        while current_node != nil && current_index != index + 1
+            incision = current_node
+            current_node = current_node.next
+            next_node = current_node.next
+            current_index += 1
+        end
+
+        incision.next = next_node
+        current_node = nil
+
+        @tail = incision if current_node.nil?
+    end
+
     def pop
         return if @head.nil?
 
@@ -180,4 +197,6 @@ p list.find(15)
 list.insert_at(66,7)
 list.insert_at(234, 3)
 list.insert_at(85,0)
+list.print_list
+list.remove_at(3)
 list.print_list
