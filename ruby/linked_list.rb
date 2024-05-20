@@ -14,11 +14,14 @@ class LinkedList
 
         current_node = @head
         index = 0
-        
+
         until current_node.nil?
             return index if current_node.value == value
+            current_node = current_node.next
+        index += 1
         end
-    end            
+        nil
+    end
 
     def size
         num_nodes = 0
@@ -142,3 +145,5 @@ p list.contains?(4)
 p list.contains?(5)
 p list.contains?(15)
 list.print_list
+
+p list.find(15)
