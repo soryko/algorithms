@@ -18,6 +18,16 @@ class LinkedList
         puts "The linked list has #{num_nodes}"
     end
 
+    def head
+        p @head.value
+        @head
+    end
+
+    def tail
+        p @tail.value
+        @tail
+    end
+
     def print_list
 
         nodes = []
@@ -71,3 +81,5 @@ list.append_node(41)
 list.prepend(10)
 list.print_list
 list.size
+list.head
+list.tail
