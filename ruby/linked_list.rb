@@ -87,10 +87,25 @@ class LinkedList
         @tail = slicer
         @tail.next = nil
     end
+
+    def contains?(value)
+        verdict = false
+        getter = @head
+        while getter != nil
+            if getter.value == value
+                verdict = true
+                break
+            end
+            getter = getter.next
+        end
+        verdict
+    end
 end
+
 
 class Node
     attr_accessor :value, :next
+
     def initialize(value)
         @value = value
         @next = nil
@@ -109,4 +124,9 @@ list.tail
 list.at(3)
 list.print_list
 list.pop
+list.print_list
+p list.contains?(4)
+
+p list.contains?(5)
+p list.contains?(15)
 list.print_list
