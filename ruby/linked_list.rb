@@ -41,6 +41,18 @@ class LinkedList
         puts start + nodes.join("] --> [") + last
     end
 
+    def at(index)
+        count =0
+        current_node = @head
+        until count == index
+            current_node = current_node.next
+            count += 1
+        end
+        current_node
+        p current_node.value
+    end
+
+
     def append_node(value)
 
         new_node = Node.new(value)
@@ -83,3 +95,4 @@ list.print_list
 list.size
 list.head
 list.tail
+list.at(3)
