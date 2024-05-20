@@ -8,6 +8,16 @@ class LinkedList
         @tail = nil
     end
 
+    def size
+        num_nodes = 0
+        current_node = @head
+        until current_node.nil?
+            num_nodes +=1
+            current_node = current_node.next
+        end
+        puts "The linked list has #{num_nodes}"
+    end
+
     def print_list
 
         nodes = []
@@ -60,3 +70,4 @@ list.append_node(15)
 list.append_node(41)
 list.prepend(10)
 list.print_list
+list.size
