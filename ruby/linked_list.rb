@@ -92,6 +92,36 @@ class LinkedList
         end
     end
 
+    def insert_at(value, index)
+
+        new_node = Node.new(value)
+        
+        if index == 0
+            new_node.next = @head
+            @head = new_node
+            @tail = new_node if tail.nil?
+            return
+        end
+
+        current_node = @head
+        current_index = 0
+        
+        while current_node != nil && current_index < index -1
+            current_node = current_node.next
+            current_index += 1
+        end
+
+        if current_node.nil?
+            append_node(value)
+            return
+        end
+
+        new_node.next = current_node.next
+        current_node.next = new_node
+
+        @tail = new_node if new_node.next.nil?
+    end
+
     def pop
         return if @head.nil?
 
@@ -145,5 +175,9 @@ p list.contains?(4)
 p list.contains?(5)
 p list.contains?(15)
 list.print_list
-
 p list.find(15)
+
+list.insert_at(66,7)
+list.insert_at(234, 3)
+list.insert_at(85,0)
+list.print_list
