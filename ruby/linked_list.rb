@@ -8,6 +8,18 @@ class LinkedList
         @tail = nil
     end
 
+    def find(value)
+        
+        return if @head.nil?
+
+        current_node = @head
+        index = 0
+        
+        until current_node.nil?
+            return index if current_node.value == value
+        end
+    end            
+
     def size
         num_nodes = 0
         current_node = @head
