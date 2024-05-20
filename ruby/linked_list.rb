@@ -48,8 +48,8 @@ class LinkedList
             current_node = current_node.next
             count += 1
         end
-        current_node
         p current_node.value
+        current_node
     end
 
 
@@ -76,6 +76,17 @@ class LinkedList
             @head = new_node
         end
     end
+
+    def pop
+        return if @head.nil?
+
+        slicer = @head
+        while slicer.next != @tail
+            slicer = slicer.next
+        end
+        @tail = slicer
+        @tail.next = nil
+    end
 end
 
 class Node
@@ -96,3 +107,6 @@ list.size
 list.head
 list.tail
 list.at(3)
+list.print_list
+list.pop
+list.print_list
