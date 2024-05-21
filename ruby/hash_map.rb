@@ -119,6 +119,10 @@ class HashMap
     end
     count
   end
+
+  def clear
+    @buckets = Array.new(@buckets.size) { LinkedList.new }
+  end
 end
 
 hash_map = HashMap.new(1024)
@@ -131,4 +135,6 @@ p hash_map.get('john')
 p hash_map.has?('john')
 hash_map.set("sam", 31)
 hash_map.set("alex", 19)
+p hash_map.length
+hash_map.clear
 p hash_map.length
