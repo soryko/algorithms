@@ -138,6 +138,36 @@ class HashMap
     end
     keys
   end
+
+  def values
+    values = []
+
+    @buckets.each do |bucket|
+      current_node = bucket.head
+      if current_node != nil
+        until current_node.nil?
+          values << current_node.value
+          current_node = current_node.next
+        end
+      end
+    end
+    values
+  end
+
+  def entries
+    entries = []
+
+    @buckets.each do |bucket|
+      current_node = bucket.head
+      if current_node != nil
+        until current_node.nil?
+          entries << [current_node.key, current_node.value]
+          current_node = current_node.next
+        end
+      end
+    end
+    entries
+  end
 end
 
 hash_map = HashMap.new(1024)
@@ -152,3 +182,5 @@ hash_map.set("sam", 31)
 hash_map.set("alex", 19)
 p hash_map.length
 p hash_map.keys
+p hash_map.values
+p hash_map.entries
