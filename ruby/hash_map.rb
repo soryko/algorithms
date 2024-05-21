@@ -28,7 +28,7 @@ end
 
 class HashMap
   
-  attr_accessor :keys
+  attr_accessor :buckets
 
   def initialize(size = 2048)
     @buckets = Array.new(size) { LinkedList.new }
@@ -123,6 +123,21 @@ class HashMap
   def clear
     @buckets = Array.new(@buckets.size) { LinkedList.new }
   end
+
+  def keys
+    keys = []
+
+    @buckets.each do |bucket|
+      current_node = bucket.head
+      if current_node != nil
+        until current_node.nil?
+          keys << current_node.key
+          current_node = current_node.next
+        end
+      end
+    end
+    keys
+  end
 end
 
 hash_map = HashMap.new(1024)
@@ -136,5 +151,4 @@ p hash_map.has?('john')
 hash_map.set("sam", 31)
 hash_map.set("alex", 19)
 p hash_map.length
-hash_map.clear
-p hash_map.length
+p hash_map.keys
