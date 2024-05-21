@@ -91,7 +91,7 @@ class HashMap
     index = hash_code % @buckets.size
     bucket = @buckets[index]
 
-    current_node = bucket&.head
+    current_node = bucket.head
     incision = nil
 
     until current_node.nil?
@@ -109,6 +109,16 @@ class HashMap
     false
   end
 
+  def length
+    count = 0
+    @buckets.each do |bucket|
+      current_node = bucket.head
+      if current_node != nil
+        count += 1
+      end
+    end
+    count
+  end
 end
 
 hash_map = HashMap.new(1024)
@@ -119,3 +129,6 @@ p hash_map.has?('john')
 hash_map.remove('john')
 p hash_map.get('john')
 p hash_map.has?('john')
+hash_map.set("sam", 31)
+hash_map.set("alex", 19)
+p hash_map.length
