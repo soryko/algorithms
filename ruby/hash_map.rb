@@ -74,21 +74,48 @@ class HashMap
 
   def has?(key)
     hash_code = hash(key)
-  index = hash_code % @buckets.size
-  bucket = @buckets[index]
+    index = hash_code % @buckets.size
+    bucket = @buckets[index]
 
-  current_node = bucket.head
+    current_node = bucket&.head
 
-  until current_node.nil?
-    return true if current_node.key == key
-    current_node = current_node.next
+    until current_node.nil?
+      return true if current_node.key == key
+      current_node = current_node.next
+    end
+    false
   end
-  false
+
+  def remove(key)
+    hash_code = hash(key)
+    index = hash_code % @buckets.size
+    bucket = @buckets[index]
+
+    current_node = bucket&.head
+    incision = nil
+
+    until current_node.nil?
+      if current_node.key == key
+        if incision.nil?
+          bucket.head = current_node.next
+        else
+        incision.next = current_node.next
+        end
+        return true
+      end
+      incision = current_node
+      current_node = current_node.next
+    end
+    false
   end
+
 end
 
 hash_map = HashMap.new(1024)
 hash_map.set("carlos", 25)
 hash_map.set("john", 12)
 p hash_map.get("carlos")
+p hash_map.has?('john')
+hash_map.remove('john')
+p hash_map.get('john')
 p hash_map.has?('john')
