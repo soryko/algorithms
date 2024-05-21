@@ -57,10 +57,38 @@ class HashMap
       bucket.head = new_node
     end
   end
+
+  def get(key)
+    hash_code = hash(key)
+    index = hash_code % @buckets.size
+    bucket = @buckets[index]
+    
+    current_node = bucket.head
+
+    until current_node.nil?
+      return current_node if current_node.key == key
+      current_node = current_node.next
+    end
+    nil
+  end
+
+  def has?(key)
+    hash_code = hash(key)
+  index = hash_code % @buckets.size
+  bucket = @buckets[index]
+
+  current_node = bucket.head
+
+  until current_node.nil?
+    return true if current_node.key == key
+    current_node = current_node.next
+  end
+  false
+  end
 end
 
 hash_map = HashMap.new(1024)
 hash_map.set("carlos", 25)
-p hash_map.buckets
 hash_map.set("john", 12)
-p hash_map.buckets
+p hash_map.get("carlos")
+p hash_map.has?('john')
