@@ -30,28 +30,37 @@ class HashMap
   
   attr_accessor :keys
 
-  def initialize
-    @buckets = Array.new() {LinkedList.new}
+  def initialize(size = 2048)
+    @buckets = Array.new(size) { LinkedList.new }
   end
 
   def set(key, value)
 
     hash_code = hash(key)
-    node = Node.new(key, value)
-    index = @buckets[hash_code]
+    index = hash_code % @buckets.size
+    bucket = @buckets[index]
 
-    @buckets[index] = node if index.nil?
-    node.value = value if node.key == key
-    until node.next.nil?
-      node.value = value if node.key == key
-      node = node.next
+    current_node = bucket.head
+
+    if current_node.nil?
+      bucket.head = Node.new(key, value)
+    else
+      until current_node.nil?
+        if current_node.key == key
+          current_node.value = value
+          return
+        end
+        current_node = current_node.next
+      end
+      new_node = Node.new(key, value)
+      new_node.next = bucket.head
+      bucket.head = new_node
     end
-    node.next = node
   end
-
 end
 
-hash_map = HashMap.new()
+hash_map = HashMap.new(1024)
 hash_map.set("carlos", 25)
-p hash_map.keys
-hash.map.set("johm", 12)
+p hash_map.buckets
+hash_map.set("john", 12)
+p hash_map.buckets
