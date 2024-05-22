@@ -69,6 +69,29 @@ class LinkedList():
             tracker = tracker.next
             self.head = tracker
             self.length -= 1
+
+    def get(self, index):
+        if self.head is None:
+            return None
+        elif self.length <= index or index < 0:
+            return None
+        else:
+            current_node = self.head
+            for i in range(index):
+                current_node = current_node.next
+            return current_node.value
+    
+    def set_value(self, index, value):
+        if self.head is None:
+            return None
+        elif self.length <= index or index < 0:
+            return None
+        else:
+            current_node = self.head
+            for i in range(index)
+                current_node = current_node.next
+            current_node.value = value
+        
 '''
 
 insert function
@@ -115,4 +138,7 @@ print("Head:", linked_list.head.value, "Memory:", linked_list.head)
 print("Tail:", linked_list.tail.value, "Memory:", linked_list.tail)
 print("Length:", linked_list.length, "Object:", vars(linked_list))
 
+linked_list.print_list()
+print(linked_list.get(4))
+linked_list.set_value(4,30)
 linked_list.print_list()
