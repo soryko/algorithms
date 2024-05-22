@@ -160,6 +160,14 @@ class Tree
     right_height = height(current_node.right)
     [left_height, right_height].max + 1
   end
+
+  def depth(current_node = @root)
+    return 0 if current_node.nil?
+    left = depth(current_node.left)
+    right = depth(current_node.right)
+
+    return [left, right].max + 1
+  end
 end
 
 array = [1,7,4,23,8,9,4,3,5,7,9,67,6345,324]
@@ -172,3 +180,4 @@ tree.pretty_print
 p tree.find(7)
 p tree.level_order()
 p tree.height()
+p tree.depth()
