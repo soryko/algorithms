@@ -153,6 +153,13 @@ class Tree
     postorder(current_node.right)
     puts current_node.value
   end
+
+  def height(current_node = @root)
+    return -1 if current_node.nil?
+    left_height = height(current_node.left)
+    right_height = height(current_node.right)
+    [left_height, right_height].max + 1
+  end
 end
 
 array = [1,7,4,23,8,9,4,3,5,7,9,67,6345,324]
@@ -164,3 +171,4 @@ tree.insert(10)
 tree.pretty_print
 p tree.find(7)
 p tree.level_order()
+p tree.height()
