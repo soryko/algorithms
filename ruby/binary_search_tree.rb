@@ -82,6 +82,77 @@ class Tree
       @root
     end
   end
+
+  def delete(value)
+    if @root.nil?
+      return
+    else
+      current_node = @root
+      while current_node.value != value
+        previous_node = current_node
+        if value > current_node.right.value
+          current_node = current_node.right
+        else
+          current_node = current_node.left
+        end
+      end
+      if previous_node.value < value
+        previous_node.right = current_node.right 
+        if current_node.right
+          previous_node.right = current_node.right
+        current_node
+        end
+      elsif previous_node.value > value
+        previous_node.left = current_node
+      end
+    end
+  end
+
+  def find(value, current_node = @root)
+    return nil if current_node.nil?
+    return current_node if current_node.value == value
+
+    left_result = find(value, current_node.right)
+    return left_result if left_result
+
+    right_result = find(value, current_node.left)
+    return right_result if right_result
+
+  end
+
+  def level_order(current_node = @root, queue = [])
+    return if current_node.nil?
+    queue << current_node.left unless current_node.left.nil?
+    queue << current_node.right unless current_node.right.nil?
+    return if queue.empty?
+    level_order(queue.shift, queue)
+  end
+
+  def inorder(current_node = @root)
+    return if current_node.nil?
+
+
+    inorder(current_node.left)
+    puts current_node.value
+    inorder(current_node.right)
+  end
+
+
+  def preorder(current_node = @root)
+    return if current_node.nil?
+
+    puts current_node.value
+    preorder(current_node.left)
+    preorder(current_node.right)
+  end
+
+  def postorder(current_node = @root)
+    return if current_node.nil?
+
+    postorder(current_node.left)
+    postorder(current_node.right)
+    puts current_node.value
+  end
 end
 
 array = [1,7,4,23,8,9,4,3,5,7,9,67,6345,324]
@@ -91,3 +162,5 @@ tree.insert(30)
 tree.insert(25)
 tree.insert(10)
 tree.pretty_print
+p tree.find(7)
+p tree.level_order()
