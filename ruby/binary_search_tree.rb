@@ -12,6 +12,7 @@ class Tree
     @root = build_tree(array)
   end
 
+  #pretty print is not my function
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.value}"
@@ -168,6 +169,17 @@ class Tree
 
     return [left, right].max + 1
   end
+
+  def balanced(current_node = @root)
+    return 0 if current_node.nil?
+
+    left = height(current_node.left)
+    right = height(current_node.right)
+
+    diff = left - right
+    diff * diff < 1
+  end
+
 end
 
 array = [1,7,4,23,8,9,4,3,5,7,9,67,6345,324]
@@ -181,3 +193,4 @@ p tree.find(7)
 p tree.level_order()
 p tree.height()
 p tree.depth()
+p tree.balanced()
