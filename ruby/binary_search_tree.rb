@@ -10,6 +10,7 @@ end
 class Tree
   def initialize(array)
     @root = build_tree(array)
+    @array = array
   end
 
   #pretty print is not my function
@@ -176,10 +177,20 @@ class Tree
     left = height(current_node.left)
     right = height(current_node.right)
 
-    diff = left - right
-    diff * diff < 1
+    diff = (left - right).abs
+    diff <= 1
   end
 
+  def rebalance(array = @array)
+    return nil if array.empty?
+
+    mid = array.length / 2
+    root = Node.new(array[mid])
+    root.left = build_tree(array[..mid])
+    root.right = build_tree(array[mid+1..])
+
+    @root = root
+  end
 end
 
 array = [1,7,4,23,8,9,4,3,5,7,9,67,6345,324]
@@ -193,4 +204,6 @@ p tree.find(7)
 p tree.level_order()
 p tree.height()
 p tree.depth()
+p tree.balanced()
+p tree.rebalance()
 p tree.balanced()
